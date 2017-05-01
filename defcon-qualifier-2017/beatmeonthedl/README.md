@@ -2,7 +2,7 @@
 The challenge gives the beatmeonthedl executable and that's all.
 Doing a reverse engineering with IDA, we can note:
 
-1- The main is a organized menu, pretty legible.
+1- The main is an organized menu, pretty legible.
 
 ![beatmeonthedl1](https://cloud.githubusercontent.com/assets/1280700/25596814/9264fb4a-2ea1-11e7-9129-2dd659003e38.png)
 
@@ -18,12 +18,12 @@ the allocated memory for a request string is of 56 bytes (line 15), it allows wr
 ![beatmeonthedl3](https://cloud.githubusercontent.com/assets/1280700/25596816/9274b666-2ea1-11e7-9154-d186d88da477.png)
 
 The buffer overflow vulnerabilities cause weird things when deleting an overflowed buffer. After
-inspecting for a while through gdb, I noticed that it was possible to write anything in reqlist.
+inspecting for a while through gdb, I noticed that it was possible to write anything to anywhere.
 For example, after deleting the input *"A"\*56 + "\x00\x00\x00\x00\x00\x00\x00\x00" +
-"\x80\x9e\x60\x00\x00\x00\x00\x00" + "\x90\x9f\x60\x00\x00\x00\x00\x00"*, it writes 0x609f90 in
+"\x80\x9e\x60\x00\x00\x00\x00\x00" + "\x90\x9f\x60\x00\x00\x00\x00\x00"*, it writes 0x609f90 in position 4 of reqlist
 0x609e98 (0x609e80 + 0x18). 
 
-Using the usual free function from stdlib, this does not happen, and an runtime error of *free():
+Using the usual free function from stdlib, this does not happen, and a runtime error of *free():
 invalid next size (fast)* occurs. This exaplains why the free function is embedded in the
 beatmeonthedl executable.
 
