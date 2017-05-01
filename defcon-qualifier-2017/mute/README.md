@@ -1,6 +1,6 @@
 # Writeup
 The challenge gives the mute executable and that's all.
-Doing a reverse engineer with IDA, we can note two things:
+Doing a reverse engineering with IDA, we can note two things:
 
 1- There is a function dropSyscalls which drops every syscalls, except 0x0, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb, 0xc and 0x3b.
 This means that the syscall 0x1 (write) is forbiden and we cannot write to stdout.
