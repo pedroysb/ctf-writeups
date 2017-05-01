@@ -2,7 +2,7 @@
 The challenge gives the mute executable and that's all.
 Doing a reverse engineer with IDA, we can note two things:
 
-1- There is a function dropSyscalls with drop every syscalls, except 0x0, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb, 0xc and 0x3b.
+1- There is a function dropSyscalls which drops every syscalls, except 0x0, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb, 0xc and 0x3b.
 This means that the syscall 0x1 (write) is forbiden and we cannot write to stdout.
 
 ![mute2](https://cloud.githubusercontent.com/assets/1280700/25589772/45f41628-2e84-11e7-98f7-7d6f808be792.png)
