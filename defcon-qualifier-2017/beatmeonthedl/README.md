@@ -6,7 +6,7 @@ Doing a reverse engineering with IDA, we can note:
 
 ![beatmeonthedl1](https://cloud.githubusercontent.com/assets/1280700/25596814/9264fb4a-2ea1-11e7-9129-2dd659003e38.png)
 
-2- The reqlist is stored in the .bss area, more specifically at address 0x609e80. It is an array
+2- The reqlist is stored in the .bss area, more specifically at address 0x609e88. It is an array
 of pointers (max of 31 places).
 
 ![beatmeonthedl2](https://cloud.githubusercontent.com/assets/1280700/25596815/9267929c-2ea1-11e7-84ba-67a7e1bb1ae3.png)
@@ -23,7 +23,7 @@ For example, after deleting the input *"A"\*56 + "\x00\x00\x00\x00\x00\x00\x00\x
 "\x80\x9e\x60\x00\x00\x00\x00\x00" + "\x90\x9f\x60\x00\x00\x00\x00\x00"*, it writes 0x609f90 in
 0x609e98 (0x609e80 + 0x18). 
 
-Using the usual free function from stdlib, this does not happens, and an runtime error of *free():
+Using the usual free function from stdlib, this does not happen, and an runtime error of *free():
 invalid next size (fast)* occurs. This exaplains why the free function is embedded in the
 beatmeonthedl executable.
 
