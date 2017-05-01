@@ -20,7 +20,7 @@ the allocated memory for a request string is of 56 bytes (line 15), it allows wr
 The buffer overflow vulnerabilities cause weird things when deleting an overflowed buffer. After
 inspecting for a while through gdb, I noticed that it was possible to write anything to anywhere.
 For example, after deleting the input *"A"\*56 + "\x00\x00\x00\x00\x00\x00\x00\x00" +
-"\x80\x9e\x60\x00\x00\x00\x00\x00" + "\x90\x9f\x60\x00\x00\x00\x00\x00"*, it writes 0x609f90 in position 4 of reqlist
+"\x80\x9e\x60\x00\x00\x00\x00\x00" + "\x90\x9f\x60\x00\x00\x00\x00\x00"*, it writes 0x609f90 in position 3 of reqlist
 0x609e98 (0x609e80 + 0x18). 
 
 Using the usual free function from stdlib, this does not happen, and a runtime error of *free():
