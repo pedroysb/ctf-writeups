@@ -1,6 +1,6 @@
 # Writeup
 The challenge gives the beatmeonthedl executable and that's all.
-Doing a reverse engineering with IDA, we can note:
+Doing a reverse engineering, we can note:
 
 1- The main is an organized menu, pretty legible.
 
@@ -9,7 +9,7 @@ Doing a reverse engineering with IDA, we can note:
 2- The reqlist is stored in the .bss area, more specifically at address 0x609e88. It is an array
 of pointers (max of 32 places).
 
-![beatmeonthedl2](https://cloud.githubusercontent.com/assets/1280700/25596815/9267929c-2ea1-11e7-84ba-67a7e1bb1ae3.png)
+![beatmeonthedl2](https://cloud.githubusercontent.com/assets/1280700/25601525/22abb95c-2ec3-11e7-8cd0-aceb26fae64d.png)
 
 3- There are buffer overflow vulnerabilities in the add_request and update_request functions. While
 the allocated memory for a request string is of 56 bytes (line 15), it allows writing 128 bytes
@@ -17,11 +17,13 @@ the allocated memory for a request string is of 56 bytes (line 15), it allows wr
 
 ![beatmeonthedl3](https://cloud.githubusercontent.com/assets/1280700/25596816/9274b666-2ea1-11e7-9154-d186d88da477.png)
 
-The buffer overflow vulnerabilities cause weird things when deleting an overflowed buffer. After
+4- The buffer overflow vulnerabilities cause weird things when deleting an overflowed buffer. After
 inspecting for a while through gdb, I noticed that it was possible to write anything to anywhere.
 For example, after deleting the input *"A"\*56 + "\x00\x00\x00\x00\x00\x00\x00\x00" +
 "\x80\x9e\x60\x00\x00\x00\x00\x00" + "\x90\x9f\x60\x00\x00\x00\x00\x00"*, it writes 0x609f90 in position 3 of reqlist
 0x609e98 (0x609e80 + 0x18). 
+
+![beatmeonthedl4](https://cloud.githubusercontent.com/assets/1280700/25601531/2d682fec-2ec3-11e7-9f62-8ae629d122f2.png)
 
 Using the usual free function from stdlib, this does not happen, and a runtime error of *free():
 invalid next size (fast)* occurs. This exaplains why the free function is embedded in the
