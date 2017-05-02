@@ -6,7 +6,7 @@ Doing a reverse engineering, we can note:
 
 ![beatmeonthedl1](https://cloud.githubusercontent.com/assets/1280700/25596814/9264fb4a-2ea1-11e7-9129-2dd659003e38.png)
 
-2- The reqlist is stored in the .bss area, more specifically at address 0x609e88. It is an array
+2- The reqlist is stored in the .bss area, more specifically at address 0x609e80. It is an array
 of pointers (max of 32 places).
 
 ![beatmeonthedl2](https://cloud.githubusercontent.com/assets/1280700/25601525/22abb95c-2ec3-11e7-8cd0-aceb26fae64d.png)
