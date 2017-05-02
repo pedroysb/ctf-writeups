@@ -7,7 +7,7 @@ Doing a reverse engineering with IDA, we can note:
 ![beatmeonthedl1](https://cloud.githubusercontent.com/assets/1280700/25596814/9264fb4a-2ea1-11e7-9129-2dd659003e38.png)
 
 2- The reqlist is stored in the .bss area, more specifically at address 0x609e88. It is an array
-of pointers (max of 31 places).
+of pointers (max of 32 places).
 
 ![beatmeonthedl2](https://cloud.githubusercontent.com/assets/1280700/25596815/9267929c-2ea1-11e7-84ba-67a7e1bb1ae3.png)
 
