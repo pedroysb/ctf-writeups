@@ -1,6 +1,6 @@
 # Writeup
 The challenge gives the smashme executable and that's all.
-Doing a reverse engineering, we can note two things:
+Doing a reverse engineering, we can note three things:
 
 1- The executable does not have any security protections. For example, the stack is executable.
 
@@ -21,7 +21,7 @@ the pointer for our string is stored in RDI (*RDI  0x7fffffffddf0 ◂— u'BBBBB
 Therefore, we can replace the B's with our shellcode and look for any *jmp RDI* or *call RDI*
 operation. The code of the executable does not have any of these instructions. However, the bytes 
 that compose these instructions are very simple. For example, we can find the corresponding bytes
-of *call RDI* in 0x403582.
+of *call RDI* at address 0x403582.
 
 ```python
 >>> from pwn import *
