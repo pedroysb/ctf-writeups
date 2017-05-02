@@ -26,7 +26,7 @@ For example, after deleting the input *"A"\*56 + "\x00\x00\x00\x00\x00\x00\x00\x
 ![beatmeonthedl4](https://cloud.githubusercontent.com/assets/1280700/25601531/2d682fec-2ec3-11e7-9f62-8ae629d122f2.png)
 
 Using the usual free function from stdlib, this does not happen, and a runtime error of *free():
-invalid next size (fast)* occurs. This exaplains why the free function is embedded in the
+invalid next size (fast)* occurs. This explains why the free function is embedded in the
 beatmeonthedl executable.
 
 After confirming this strange behavior, I wrote the script below which gave me a shell.
