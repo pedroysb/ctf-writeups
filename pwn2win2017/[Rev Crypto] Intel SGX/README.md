@@ -1,3 +1,12 @@
+After reversing the client, you can see that it has the enclave.butcher.team address.
+This address is a remote SGX enclave, where you can query the encrypted flag or perform a remote
+attestion and be able to decrypt the flag.
+
+The remote attestation process is described here: 
+https://software.intel.com/en-us/articles/intel-software-guard-extensions-remote-attestation-end-to-end-example
+
+The implementation is in solve.py
+
 $ python solve.py 
 [+] Opening connection to enclave.butcher.team on port 8088: Done
 Hello there!
